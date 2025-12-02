@@ -1,0 +1,10 @@
+{{- with pkiCert "pki_int/issue/example-dot-com" "common_name=test.example.com" -}}
+{{ .Cert }}{{ .CA }}{{ .Key }}
+{{ .Key | writeToFile "/var/mqm/qmgrs/QM1/ssl/privatekey.key" "mqm" "mqm" "0600" }}
+{{ .CA | writeToFile "/var/mqm/qmgrs/QM1/ssl/ca.pem" "mqm" "mqm" "0644" }}
+{{ .Cert | writeToFile "/var/mqm/qmgrs/QM1/ssl/cert.pem" "mqm" "mqm" "0644" }}
+{{- end -}}
+
+{{- with secret "pki_int/cert/ca_chain" -}}
+{{ .Data.ca_chain | writeToFile "/var/mqm/qmgrs/QM1/ssl/chain.pem" "mqm" "mqm" "0644"}}
+{{- end -}}

@@ -1,0 +1,8 @@
+.DS_Store
+
+.terraform
+*.tfvars
+
+certs/
+vault-token-via-agent
+template-cache

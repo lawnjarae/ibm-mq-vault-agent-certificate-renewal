@@ -1,0 +1,10 @@
+{{- with pkiCert "pki_int/issue/example-dot-com" "common_name=test.example.com" "ttl=30s" -}}
+{{ .Cert }}{{ .CA }}{{ .Key }}
+{{ .Key | writeToFile "./certs/privatekey.key" "" "" "0600" }}
+{{ .CA | writeToFile "./certs/ca.pem" "" "" "0644" }}
+{{ .Cert | writeToFile "./certs/cert.pem" "" "" "0644" "append" }}
+{{- end -}}
+
+{{- with secret "pki_int/cert/ca_chain" -}}
+{{ .Data.ca_chain | writeToFile "./certs/chain.pem" "" "" "0644"}}
+{{- end -}}
