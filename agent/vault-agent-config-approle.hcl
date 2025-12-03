@@ -19,19 +19,13 @@ auto_auth {
     }
   }
 
-  # sink "file" {
-  #   config = {
-  #     path = "/opt/vault/vault-agent/token-dir/vault-token-via-agent"
-  #   }
-  # }
-
-
   sink "file" {
     config = {
       path = "./vault-token-via-agent"
     }
   }
 }
+
 # This template will work when deployed on an MQ server with default install paths.
 # template {
 #   source      = "./get-certs-and-chain.ctmpl"
@@ -41,7 +35,7 @@ auto_auth {
 #   }
 
   # Template for testing locally to ensure that you can connec to vault and retreive certificates
-  template {
+template {
   source      = "./get-certs-and-chain-local.ctmpl"
   destination =  "./template-cache"
   exec {

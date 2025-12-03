@@ -7,7 +7,7 @@ set -e
 export VAULT_TOKEN="$(cat /opt/vault/vault-agent/token-dir/vault-token-via-agent)"
 
 # Get the KDB password from Vault
-KDB_PASSWORD=$(vault kv get -namespace=admin/ibm_mq -mount="secret" -field="kdb_password" "qmgrs/QM1")
+KDB_PASSWORD=$(vault kv get -namespace=admin/ibm_mq_clm -mount="secret" -field="kdb_password" "qmgrs/QM1")
 
 # --- Configuration ---
 # The name of the single queue manager you want to process.
